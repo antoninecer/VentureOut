@@ -1,20 +1,27 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import HomeScreen from "./screens/HomeScreen";
+import PlanRouteScreen from "./screens/PlanRouteScreen";
+import RouteDetailScreen from "./screens/RouteDetailScreen";
+import ViewRoutesScreen from "./screens/ViewRouteScreen";
 
-export default function App() {
+// Přidání logování komponenty do konzole
+console.log("PlanRouteScreen:", PlanRouteScreen);
+
+const Stack = createStackNavigator();
+
+function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="PlanRoute" component={PlanRouteScreen} />
+        <Stack.Screen name="RouteDetail" component={RouteDetailScreen} />
+        <Stack.Screen name="ViewRoutes" component={ViewRoutesScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
